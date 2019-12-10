@@ -6,6 +6,8 @@ addons:
     packages:
       - python-pip
 install:
+  - virtualenv .venv
+  - source .venv/bin/activate
   - pip install -r requirements.txt
   - ansible --version
   - molecule --version
