@@ -18,11 +18,11 @@
     name: teams
     update_cache: true
   when:
-    - teams_install
+    - teams_install | bool
 
 - name: install teams insiders
   apt:
     name: teams-insiders
     update_cache: true
   when:
-    - teams_insiders_install
+    - teams_insiders_install | bool
