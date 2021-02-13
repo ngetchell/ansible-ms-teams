@@ -5,15 +5,13 @@
   include: "{{ ansible_os_family | lower }}.yml"
 
 - name: install teams
-  apt:
+  package:
     name: teams
-    update_cache: true
   when:
     - teams_install | bool
 
 - name: install teams insiders
-  apt:
+  package:
     name: teams-insiders
-    update_cache: true
   when:
     - teams_insiders_install | bool
