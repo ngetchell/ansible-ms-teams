@@ -1,28 +1,17 @@
 ---
 # tasks file for ms-teams
 
-- name: set gpg key
-  apt_key:
-    url: "https://packages.microsoft.com/keys/microsoft.asc"
-    state: present
-
-- name: add repository
-  apt_repository:
-    repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main'
-    filename: teams
-    state: present
-    update_cache: yes
+- name: Include tasks for "{{ ansible_os_family }}"
+  include: "{{ ansible_os_family | lower }}.yml"
 
 - name: install teams
-  apt:
+  package:
     name: teams
-    update_cache: true
   when:
     - teams_install | bool
 
 - name: install teams insiders
-  apt:
+  package:
     name: teams-insiders
-    update_cache: true
   when:
     - teams_insiders_install | bool
