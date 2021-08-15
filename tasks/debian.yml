@@ -1,13 +1,13 @@
 ---
 - name: set gpg key
   apt_key:
-    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    url: "{{ teams_packages_gpg_key }}"
     state: present
 
 - name: add repository
   apt_repository:
     repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main'
-    filename: teams
+    filename: "{{ teams_repo_name }}"
     update_cache: no
     state: present
 
